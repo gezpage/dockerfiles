@@ -16,4 +16,3 @@ RUN dpkg-divert --local --rename --add /sbin/initctl; \
 # Expose ports for SSH and MySQL
 EXPOSE 22
 EXPOSE 3306
-
