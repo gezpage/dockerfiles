@@ -5,8 +5,8 @@ following toolset:
 
 * PHP 5.3
 * Apache 2
-* Nodejs
-* APC
+* Nodejs (PPA)
+* APC (PECL)
 * SSH
 * Git
 * Curl
@@ -35,8 +35,6 @@ Change the root password:
 
     passwd root
 
-## Commit container changes to the image
-
 Now disconnect and commit the changes back to the image and delete the
 container:
 
@@ -54,6 +52,8 @@ Connect via SSH:
 Finally, start the apache2 service:
 
     service apache2 start
+
+## Usage
 
 You can now enter http://localhost:6080 in your web browser to access
 the website, and use the project folder to edit files on your local

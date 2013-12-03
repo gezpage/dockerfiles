@@ -1,6 +1,14 @@
 # MySQL dockerfile
 
-Ubuntu precise container with MySQL 5.5
+Ubuntu precise container with MySQL 5.5.
+
+Note: MySQL will use the default configuration which does not allow
+access from an external host, this renders it pretty useless unless you
+use SSH tunneling. If you wish to allow access, comment out the line:
+
+    bind-address           = 127.0.0.1
+
+in /etc/mysql/my.cnf and restart mysqld_safe.
 
 ## Ports
 
