@@ -4,11 +4,18 @@ Ubuntu precise container with MySQL 5.5.
 
 Note: MySQL will use the default configuration which does not allow
 access from an external host, this renders it pretty useless unless you
-use SSH tunneling. If you wish to allow access, comment out the line:
+use SSH tunneling. If you wish to allow access, comment the line:
 
     bind-address           = 127.0.0.1
 
-in /etc/mysql/my.cnf and restart mysqld_safe.
+in /etc/mysql/my.cnf and restart mysqld_safe. Also don't forget to
+create a new user for external access as the default root user only
+allows local access. Use this SQL:
+
+    CREATE USER root@'%' IDENTIFIED BY 'password';
+    GRANT ALL ON *.* TO root@'%';
+
+Job's a good'un!
 
 ## Ports
 
@@ -16,6 +23,10 @@ in /etc/mysql/my.cnf and restart mysqld_safe.
 * MYSQL 3306
 
 ## Build steps
+
+If you wish to retain the mysql data files on your local filesystem,
+extract the contents of var_lib_mysql.tgz somewhere and reference this
+when starting the process (replace /path/to/mysqldata below).
 
 Build the image:
 
