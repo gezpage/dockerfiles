@@ -4,7 +4,7 @@ Ubuntu precise container with MySQL 5.5
 
 ## Ports
 
-* SSH   5000
+* SSH   5022
 * MYSQL 3306
 
 ## Build steps
@@ -25,19 +25,13 @@ Now disconnect and commit the changes back to the image and remove the process:
 
 Run a process again, this time starting the SSH server and daemonizing it as well as binding a mount point to your local mysql data:
 
-    docker run -d \
-        -name mysql \
-        -p 5000:22 \
-        -p 3306:3306 \
-        -v /path/to/mysqldata:/var/lib/mysql \
-        gezpage/mysql \
-        /usr/sbin/sshd -D
+    docker run -d -name mysql -p 5022:22 -p 3306:3306 -v /path/to/mysqldata:/var/lib/mysql gezpage/mysql /usr/sbin/sshd -D
 
 ## Usage
 
 Connect via SSH and start the MySQL process:
 
-    ssh -p 5000 root@localhost
+    ssh -p 5022 root@localhost
 
 Fix the file ownership and start the MySQL daemon backgrounded:
 

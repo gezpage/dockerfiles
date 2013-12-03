@@ -18,8 +18,8 @@ folder where the project files are located.
 
 ## Ports
 
-* SSH  6000
-* HTTP 6001
+* SSH  6022
+* HTTP 6080
 
 ## Build steps
 
@@ -45,23 +45,16 @@ container:
 
 Run a process again, this time starting the SSH server and daemonizing it as well as binding a mount point to your Symfony2 project data:
 
-    docker run -d \
-        -name symfony2 \
-        -link mysql:db \
-        -p 6000:22 \
-        -p 6001:80 \
-        -v /path/to/symfony2project:/var/www \
-        gezpage/symfony2 \
-        /usr/sbin/sshd -D
+    docker run -d -name symfony2 -link mysql:db -p 6022:22 -p 6080:80 -v /path/to/symfony2project:/var/www gezpage/symfony2 /usr/sbin/sshd -D
 
 Connect via SSH:
 
-    ssh root@localhost -p 6000
+    ssh root@localhost -p 6022
 
 Finally, start the apache2 service:
 
     service apache2 start
 
-You can now enter http://localhost:6001 in your web browser to access
+You can now enter http://localhost:6080 in your web browser to access
 the website, and use the project folder to edit files on your local
 machine.

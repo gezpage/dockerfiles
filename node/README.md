@@ -7,8 +7,8 @@ path to /var/node/data.
 
 ## Ports
 
-* SSH  7000
-* HTTP 7001
+* SSH  7022
+* HTTP 7080
 
 ## Build steps
 
@@ -31,8 +31,8 @@ Run a process again, this time starting the SSH server and daemonizing it as wel
     docker run -d \
         -name node \
         -link mysql:db \
-        -p 7000:22 \
-        -p 7001:80 \
+        -p 7022:22 \
+        -p 7080:80 \
         -v /path/to/data:/var/node/data \
         gezpage/node \
         /usr/sbin/sshd -D
@@ -41,5 +41,5 @@ Run a process again, this time starting the SSH server and daemonizing it as wel
 
 Connect via SSH to the container:
 
-    ssh root@localhost -p 7000
+    ssh root@localhost -p 7022
 
