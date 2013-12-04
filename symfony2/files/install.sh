@@ -33,4 +33,8 @@ printf "\n\n * Installing Composer\n\n"
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
 
+# Install LessCSS globally
+printf "\n\n * Installing Less CSS\n\n"
+npm install --global less
+
 printf "\n\n * Install complete!\n\n"

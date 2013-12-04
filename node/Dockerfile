@@ -1,11 +1,11 @@
 # Node JS dockerfile
 
-FROM ubuntu:12.04
+FROM gezpage/ubuntu
 
-ADD ./files/sources.list /etc/apt/sources.list
+MAINTAINER gezpage@gmail.com
 
 RUN apt-get update; \
-  DEBIAN_FRONTEND=noninteractive apt-get --yes install ssh openssh-server \
+  DEBIAN_FRONTEND=noninteractive apt-get --yes install \
     git-core curl python-software-properties vim; \
   add-apt-repository -y ppa:chris-lea/node.js; \
   apt-get update; \
@@ -13,5 +13,6 @@ RUN apt-get update; \
 
 RUN mkdir -p /var/node/data
 
-EXPOSE 22
-EXPOSE 80
+EXPOSE 22 80
+
+CMD ["/usr/bin/supervisord"]

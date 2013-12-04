@@ -27,31 +27,13 @@ Build the image:
 
     docker build -t gezpage/symfony2 .
 
-Run a container with a bash shell:
+Run a container binding a mount point to your Symfony2 project data:
 
-    docker run -i -t -name symfony2 gezpage/symfony2 /bin/bash
-
-Change the root password:
-
-    passwd root
-
-Now disconnect and commit the changes back to the image and delete the
-container:
-
-    docker commit symfony2 gezpage/symfony2
-    docker rm symfony2
-
-Run a process again, this time starting the SSH server and daemonizing it as well as binding a mount point to your Symfony2 project data:
-
-    docker run -d -name symfony2 -link mysql:db -p 6022:22 -p 6080:80 -v /path/to/symfony2project:/var/www gezpage/symfony2 /usr/sbin/sshd -D
+    docker run -d -name symfony2 -link mysql:db -p 6022:22 -p 6080:80 -v /path/to/symfony2project:/var/www gezpage/symfony2
 
 Connect via SSH:
 
     ssh root@localhost -p 6022
-
-Finally, start the apache2 service:
-
-    service apache2 start
 
 ## Usage
 

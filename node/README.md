@@ -16,17 +16,7 @@ Build an image
 
     docker build -t gezpage/node .
 
-Run a process with a bash shell and change the root password:
-
-    docker run -i -name node -t gezpage/node /bin/bash
-    passwd root
-
-Now disconnect and commit the changes back to the image and remove the process:
-
-    docker commit node gezpage/node
-    docker rm node
-
-Run a process again, this time starting the SSH server and daemonizing it as well as binding a mount point to your local data:
+Run a process binding a mount point to your local data:
 
     docker run -d \
         -name node \
@@ -34,8 +24,7 @@ Run a process again, this time starting the SSH server and daemonizing it as wel
         -p 7022:22 \
         -p 7080:80 \
         -v /path/to/data:/var/node/data \
-        gezpage/node \
-        /usr/sbin/sshd -D
+        gezpage/node
 
 ## Usage
 

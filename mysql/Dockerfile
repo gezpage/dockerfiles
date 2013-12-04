@@ -1,18 +1,17 @@
 # MySQL dockerfile
 
-FROM ubuntu:12.04
+FROM gezpage/ubuntu
 
 MAINTAINER gezpage@gmail.com
 
-RUN dpkg-divert --local --rename --add /sbin/initctl; \
-  ln -s /bin/true /sbin/initctl; \
-  echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list; \
-  apt-get update; \
-  DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server openssh-server; \
+RUN apt-get update; \
+  DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server \
   apt-get clean; \
-
   mkdir /var/run/sshd
 
+ADD files/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
 # Expose ports for SSH and MySQL
-EXPOSE 22
-EXPOSE 3306
+EXPOSE 22 3306
+
+CMD ["/usr/bin/supervisord"]
