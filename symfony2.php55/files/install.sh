@@ -3,7 +3,7 @@
 # Install script for PHP Symfony2 development
 #
 
-# Install nodejs
+# Install PHP
 printf "\n\n * Installing PHP 5.5 PPA\n\n"
 add-apt-repository -y ppa:ondrej/php5
 apt-get update
