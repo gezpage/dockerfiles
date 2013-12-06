@@ -9,7 +9,7 @@ docker build -t gezpage/mysql mysql
 docker build -t gezpage/node node
 docker build -t gezpage/rails rails
 docker build -t gezpage/redis redis
-docker build -t gezpage/symfony2:5.3 symfony2
+docker build -t gezpage/symfony2:5.3 symfony2.php53
 docker build -t gezpage/symfony2:5.5 symfony2.php55
 
 echo "Cleaning old containers"

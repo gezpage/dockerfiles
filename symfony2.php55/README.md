@@ -29,7 +29,7 @@ Build the image:
 
 Run a container binding a mount point to your Symfony2 project data:
 
-    docker run -d -name symfony2 -link mysql:db -p 6022:22 -p 6080:80 -v /path/to/symfony2project:/var/www gezpage/symfony2:php5.5
+    docker run -d -name symfony2 -link mysql:db -p 6022:22 -p 6080:80 -v /path/to/symfony2project:/var/www gezpage/symfony2:5.5
 
 Connect via SSH:
 
