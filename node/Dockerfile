@@ -9,9 +9,8 @@ RUN apt-get update; \
     git-core curl python-software-properties vim; \
   add-apt-repository -y ppa:chris-lea/node.js; \
   apt-get update; \
-  apt-get install nodejs
-
-RUN mkdir -p /var/node/data
+  apt-get install -y nodejs; \
+  npm install --global express jade socket.io less
 
 EXPOSE 22 80
 

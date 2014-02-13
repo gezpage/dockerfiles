@@ -10,7 +10,7 @@ RUN dpkg-divert --local --rename --add /sbin/initctl; \
   echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list; \
   apt-get update; \
   apt-get -y upgrade; \
-  DEBIAN_FRONTEND=noninteractive apt-get install -y openssh-server supervisor; \
+  DEBIAN_FRONTEND=noninteractive apt-get install -y openssh-server supervisor vim; \
   apt-get clean; \
 
   mkdir -p /var/run/sshd; \
