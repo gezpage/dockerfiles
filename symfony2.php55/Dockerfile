@@ -4,8 +4,9 @@ FROM gezpage/ubuntu
 
 MAINTAINER gezpage@gmail.com
 
-RUN apt-get update; \
-  DEBIAN_FRONTEND=noninteractive apt-get --yes install git-core curl postfix unzip make \
+RUN echo "deb http://archive.ubuntu.com/ubuntu precise-updates main restricted" >> /etc/apt/sources.list; \
+    apt-get update; \
+    DEBIAN_FRONTEND=noninteractive apt-get --yes install git-core curl postfix unzip make \
     libxml2-dev libpcre3-dev yui-compressor libicu-dev \
     python-software-properties vim
 
