@@ -1,0 +1,28 @@
+#!/bin/bash
+
+name=$1
+image="gezpage/$2"
+shared_folder=$3
+port_prefix=$4
+
+function output {
+    echo -e "\e[01;33m${*}\e[00m"
+}
+
+if [ ! $name ] || [ ! $shared_folder ] || [ ! $port_prefix ]; then
+    output "Error: You must provide container name, shared folder, and a port prefix. E.g."
+    echo "  docker-start newproject image ~/Dev/project/newproject 60"
+    output "Choose from one of these images"
+    output "(only provide the image name, not the gezpage/ prefix and don't forget the tag if needed)"
+    docker images |awk '/gezpage/'
+    exit
+fi
+
+output " [*] Creating contaier $name ..."
+
+response=`docker run -d --name $name -p ${port_prefix}22:22 -p ${port_prefix}80:80 -v ${shared_folder}:/var/www $image`
+
+output " [*] Finished creating container (${response})"
+output " [*] Connecting over ssh (default root password is 'docker') ... "
+
+docker-ssh $name
