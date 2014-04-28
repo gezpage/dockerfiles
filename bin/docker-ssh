@@ -2,8 +2,13 @@
 
 # provide the container name as the first argument
 
-user=root
 container=$1
+user=$2
+
+if [ ! $user ]; then
+    user=root
+fi
+
 IFS=':' read -a ssh_host <<< "`docker port ${container} 22`"
 
 ssh -A -p ${ssh_host[1]} ${user}@${ssh_host[0]}
