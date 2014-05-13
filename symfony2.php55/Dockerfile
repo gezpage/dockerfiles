@@ -11,6 +11,8 @@ RUN echo "deb http://archive.ubuntu.com/ubuntu precise-updates main restricted" 
     python-software-properties vim
 
 ADD files/000-default /etc/apache2/sites-enabled/000-default.conf
+ADD files/cliphp.ini /etc/php5/cli/php.ini
+ADD files/apachephp.ini /etc/php5/apache2/php.ini
 ADD files/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 EXPOSE 22 80

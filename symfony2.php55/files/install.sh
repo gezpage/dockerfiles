@@ -25,9 +25,6 @@ printf "\n\n * Enabling Apache mod_rewrite\n\n"
 a2enmod rewrite
 service apache2 reload
 
-# Delete default vhost
-rm /etc/apache2/sites-enabled/000-default
-
 # Install Composer globally
 printf "\n\n * Installing Composer\n\n"
 curl -sS https://getcomposer.org/installer | php
@@ -36,5 +33,10 @@ mv composer.phar /usr/local/bin/composer
 # Install LessCSS globally
 printf "\n\n * Installing Less CSS\n\n"
 npm install --global less
+
+# Create www-user
+printf "\n\n * Creting www-user\n\n"
+useradd -m -g www-data -G sudo -s /bin/bash www-user
+echo "www-user:docker" | chpasswd
 
 printf "\n\n * Install complete!\n\n"
