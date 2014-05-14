@@ -13,8 +13,11 @@ following toolset:
 * Postfix
 * Vim
 
-Included is a link to an already running mysql container, and a mounted
-folder where the project files are located.
+The run command will mount a local folder with your web project so you
+will keep it on your local machine. A www-user will be created in the
+www-data group with a umask of 0002, this works around many issues with
+editing web files as the default group will be www-data and default
+permissions will allow read and write on the group.
 
 ## Ports
 
@@ -25,15 +28,17 @@ folder where the project files are located.
 
 Build the image:
 
-    docker build -t gezpage/symfony2 .
+    docker build -t gezpage/symfony2:php5.3 .
 
 Run a container binding a mount point to your Symfony2 project data:
 
-    docker run -d -name symfony2 -link mysql:db -p 6022:22 -p 6080:80 -v /path/to/symfony2project:/var/www gezpage/symfony2:5.3
+    docker run -d -name symfony2 -p 6022:22 -p 6080:80 -v /path/to/symfony2project:/var/www gezpage/symfony2:php5.3
 
 Connect via SSH:
 
-    ssh root@localhost -p 6022
+    ssh www-user@localhost -p 6022
+
+Password is 'docker'.
 
 ## Usage
 

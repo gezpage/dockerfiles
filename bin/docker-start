@@ -20,7 +20,12 @@ fi
 
 output " [*] Creating contaier $name ..."
 
-response=`docker run -d --name $name -p ${port_prefix}22:22 -p ${port_prefix}80:80 -v ${shared_folder}:/var/www $image`
+command="docker run -d -name $name -p ${port_prefix}22:22 -p ${port_prefix}80:80 -v ${shared_folder}:/var/www $image"
+echo $command
+
+response=`${command}`
+
+sleep 4
 
 output " [*] Finished creating container (${response})"
 output " [*] Connecting over ssh (default root password is 'docker') ... "

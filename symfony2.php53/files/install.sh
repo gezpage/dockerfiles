@@ -1,16 +1,13 @@
 #!/bin/bash
 
-# Install script for PHP Symfony2 development
-#
-# Preconditions:
-#
-#   The following packages must be installed:
-#
-#   ssh git-core curl postfix unzip make \
-#   php5-mysql php5-sqlite php5-curl php5-mcrypt php-apc php5-dev php-pear php5-curl \
-#   php-apc php5-intl php5-gd libapache2-mod-php5 apache2 php5 php5-sqlite \
-#   libxml2-dev libpcre3-dev yui-compressor libicu-dev \
-#   python-software-properties; \
+# Install script for PHP 5.3 Symfony2 development
+
+apt-get update
+DEBIAN_FRONTEND=noninteractive apt-get --yes install git-core curl postfix unzip make \
+    php5-mysql php5-sqlite php5-curl php5-mcrypt php-apc php5-dev php-pear php5-curl \
+    php-apc php5-intl php5-gd libapache2-mod-php5 apache2 php5 php5-sqlite php5-memcache \
+    libxml2-dev libpcre3-dev yui-compressor libicu-dev \
+    python-software-properties vim
 
 # Install APC using PECL
 printf "\n\n * Installing APC\n\n"
@@ -38,7 +35,7 @@ printf "\n\n * Installing Less CSS\n\n"
 npm install --global less
 
 # Create www-user
-printf "\n\n * Creting www-user\n\n"
+printf "\n\n * Creating www-user\n\n"
 useradd -m -g www-data -G sudo -s /bin/bash www-user
 echo "www-user:docker" | chpasswd
 
